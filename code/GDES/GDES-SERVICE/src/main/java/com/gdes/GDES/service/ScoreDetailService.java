@@ -1,18 +1,41 @@
 package com.gdes.GDES.service;
 
-import com.gdes.GDES.model.LatestAbilityScore;
-import com.gdes.GDES.model.ScoreDetail;
+import com.gdes.GDES.model.Latestabilityscore;
+import com.gdes.GDES.model.Scoredetail;
 
 import java.util.List;
 
-/**
- * Created by 96906 on 2018/5/5.
- */
-public interface ScoreDetailService {
+
+public interface ScoredetailService {
     /**
-     * 根据能力点编号查找能力得分详情
-     * @param latestAbilityScore
+     * 插入得分详情
+     * @param scoredetail
+     * @return
+     * @throws Exception
+     */
+    public int addScoredetail(Scoredetail scoredetail) throws Exception;
+
+    /**
+     * 根据学生id查询得分详情
+     * @param sid
+     * @return
+     * @throws Exception
+     */
+    public List<Scoredetail> queryByStudentId(String sid) throws Exception;
+
+    /**
+     * 根据能力点Id和学生id查询得分详情
+     * @param sid
+     * @param apid
+     * @return
+     * @throws Exception
+     */
+    public List<Scoredetail> queryByAbilityId(String sid, Integer apid) throws Exception;
+
+    /**
+     * 按学号得到不重复的能力点id
+     * @param sid
      * @return
      */
-    public List<ScoreDetail> getScoreDetailListByAbilityId(LatestAbilityScore latestAbilityScore);
+    public List<Integer> getApIdNotRepeat(String sid) throws Exception;
 }

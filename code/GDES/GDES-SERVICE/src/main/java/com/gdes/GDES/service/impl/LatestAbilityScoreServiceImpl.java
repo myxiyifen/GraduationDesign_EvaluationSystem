@@ -1,39 +1,42 @@
 package com.gdes.GDES.service.impl;
 
-import com.gdes.GDES.dao.AbilityPointDao;
-import com.gdes.GDES.dao.LatestAbilityScoreDao;
-import com.gdes.GDES.model.AbilityPoint;
-import com.gdes.GDES.model.LatestAbilityScore;
-import com.gdes.GDES.service.LatestAbilityScoreService;
+import com.gdes.GDES.dao.AbilitypointMapper;
+import com.gdes.GDES.dao.LatestabilityscoreMapper;
+import com.gdes.GDES.model.Abilitypoint;
+import com.gdes.GDES.model.Latestabilityscore;
+import com.gdes.GDES.model.LatestabilityscoreExample;
+import com.gdes.GDES.service.LatestabilityscoreService;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
 import java.util.List;
 
-/**
- * Created by 96906 on 2018/5/3.
- */
 @Repository
-public class LatestAbilityScoreServiceImpl implements LatestAbilityScoreService {
-    @Resource
-    private LatestAbilityScoreDao latestAbilityScoreDao;
+public class LatestabilityscoreServiceImpl implements LatestabilityscoreService{
 
     @Resource
-    private AbilityPointDao abilityPointDao;
-    /**
-     * 根据学生I的查找
-     * @param id_s 学号
-     * @return 结果链表
-     */
-    public List<LatestAbilityScore> getAbilityScoreListById(String id_s) {
-        List<LatestAbilityScore> latestAbilityScores = latestAbilityScoreDao.getAbilityScoreListById(id_s);
-        //找到能力点名称
-        for(LatestAbilityScore a: latestAbilityScores) {
-            Integer id_ap = a.getId_ap();
-            AbilityPoint abilityPoint = abilityPointDao.getAbilityPointById(id_ap);
-            a.setAbilitypoint(abilityPoint);
-        }
-        return latestAbilityScores;
+    private LatestabilityscoreMapper latestabilityscoreMapper;
+
+    @Resource
+    private AbilitypointMapper abilitypointMapper;
+
+    public int addLatestabilityscore(Latestabilityscore latestabilityscore) throws Exception {
+        return latestabilityscoreMapper.insert(latestabilityscore);
     }
 
+    public List<Latestabilityscore> queryByStudentId(String sid) throws Exception {
+        LatestabilityscoreExample example = new LatestabilityscoreExample();
+        LatestabilityscoreExample.Criteria criteria = example.createCriteria();
+        criteria.andIdSEqualTo(sid);
+        example.setOrderByClause("id_s ASC");
+        List<Latestabilityscore> latestabilityscores = latestabilityscoreMapper.selectByExample(example);
+
+        for(Latestabilityscore las : latestabilityscores) {
+            Integer apid = las.getIdAp();
+            Abilitypoint abilitypoint = abilitypointMapper.selectByPrimaryKey(apid);
+            las.setAbilitypoint(abilitypoint);
+        }
+
+        return latestabilityscores;
+    }
 }

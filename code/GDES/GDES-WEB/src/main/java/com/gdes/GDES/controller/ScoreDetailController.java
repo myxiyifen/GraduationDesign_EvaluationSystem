@@ -1,8 +1,7 @@
 package com.gdes.GDES.controller;
 
-import com.gdes.GDES.model.LatestAbilityScore;
-import com.gdes.GDES.model.ScoreDetail;
-import com.gdes.GDES.service.ScoreDetailService;
+import com.gdes.GDES.model.Scoredetail;
+import com.gdes.GDES.service.ScoredetailService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,15 +11,21 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/scoredetail/")
-public class ScoreDetailController {
+public class ScoredetailController {
 
     @Resource
-    private ScoreDetailService scoreDetailService;
+    private ScoredetailService scoredetailService;
 
     @RequestMapping("scoredetail")
-    public String studentScoreDetail(LatestAbilityScore latestAbilityScore, Model model) {
-        List<ScoreDetail> scoreDetailList = scoreDetailService.getScoreDetailListByAbilityId(latestAbilityScore);
-        model.addAttribute("detail", scoreDetailList);
+    public String studentScoreDetail(String id_s, Integer id_ap, Model model) throws Exception {
+        List<Scoredetail> scoredetailList = scoredetailService.queryByAbilityId(id_s, id_ap);
+        model.addAttribute("detail", scoredetailList);
         return "student/score_detail";
+    }
+
+    public String getIntArrayApId(String id_s, Model model) throws Exception{
+        //int[] apidarray = scoredetailService.getApIdNotRepeat(id_s);
+        //model.addAttribute("arrayapid", apidarray);
+        return "";
     }
 }

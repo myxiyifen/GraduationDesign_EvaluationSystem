@@ -50,14 +50,14 @@
                                     <tbody>
                                     <c:forEach items="${detail}" var="d">
                                     <tr class="odd gradeX">
-                                        <td class="center">${d.id_ap}</td>
-                                        <td class="center">${d.abilitypoint.name_ap}</td>
+                                         <td class="center">${d.idAp}</td>
+                                        <td class="center">${d.abilitypoint.nameAp}</td>
                                         <td class="center">
-                                            <a href="#">${d.id_q}</a>
+                                            <a href="#">${d.idQ}</a>
                                         </td>
-                                        <td class="center">${d.score_sd}</td>
-                                        <td class="center">${d.teacher.name_t}</td>
-                                        <td class="center">${d.time_sd}</td>
+                                        <td class="center">${d.scoreSd}</td>
+                                        <td class="center">${d.teacher.nameT}</td>
+                                        <td class="center">${d.timeSd}</td>
                                     </tr>
                                     </c:forEach>
                                     </tbody>

@@ -1,18 +1,26 @@
 package com.gdes.GDES.service;
 
-import com.gdes.GDES.model.LatestAbilityScore;
+import com.gdes.GDES.model.Latestabilityscore;
 
 import java.util.List;
 
 /**
  * 最新能力点得分 业务接口
  */
-public interface LatestAbilityScoreService {
+public interface LatestabilityscoreService {
     /**
-     * 根据学生Id查找
-     * @param id_s 学号
-     * @return 结果链表
+     * 插入记录
+     * @param latestabilityscore
+     * @return
+     * @throws Exception
      */
-    public List<LatestAbilityScore> getAbilityScoreListById(String id_s);
+    public int addLatestabilityscore(Latestabilityscore latestabilityscore) throws Exception;
 
+    /**
+     * 按学生id查询
+     * @param sid
+     * @return
+     * @throws Exception
+     */
+    public List<Latestabilityscore> queryByStudentId(String sid) throws Exception;
 }

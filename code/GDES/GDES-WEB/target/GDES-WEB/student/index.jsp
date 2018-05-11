@@ -243,7 +243,7 @@
                 </ul>
             </li>
             <li class="sidebar-nav-link">
-                <a href="${basePath}latestabilityscore/listbystudentid.do?id_s=631406010102" target="index">
+                <a href="${basePath}las/listbystudentid.do?id_s=631406010217" target="index">
                     <i class="am-icon-table sidebar-nav-link-logo"></i> 能力得分
                 </a>
             </li>
@@ -259,7 +259,7 @@
                 </a>
             </li>
             <li class="sidebar-nav-link">
-                <a href="${basePath}latestabilityscore/scoreproportion.do?id_s=631406010102" target="index">
+                <a href="${basePath}las/scoreproportion.do?id_s=631406010217" target="index">
                     <i class="am-icon-bar-chart sidebar-nav-link-logo"></i> 图表
 
                 </a>
@@ -297,8 +297,8 @@
                 </a>
             </li>
             <li class="sidebar-nav-link">
-                <a href="404.html">
-                    <i class="am-icon-tv sidebar-nav-link-logo"></i> 404错误
+                <a href="${basePath}evaluation/execut.do" target="index">
+                    <i class="am-icon-tv sidebar-nav-link-logo"></i> 测试
                 </a>
             </li>
 

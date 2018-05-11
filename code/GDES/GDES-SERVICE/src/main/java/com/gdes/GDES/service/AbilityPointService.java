@@ -1,12 +1,14 @@
 package com.gdes.GDES.service;
 
-import com.gdes.GDES.model.AbilityPoint;
+import com.gdes.GDES.model.Abilitypoint;
 
-public interface AbilityPointService {
+public interface AbilitypointService {
+
     /**
-     * 根据id查询
+     * 根据能力点id查询
      * @param id_ap
      * @return
+     * @throws Exception
      */
-    public AbilityPoint getAbilityPointById(Integer id_ap);
+    public Abilitypoint queryByAbilityPointId(Integer id_ap) throws Exception;
 }

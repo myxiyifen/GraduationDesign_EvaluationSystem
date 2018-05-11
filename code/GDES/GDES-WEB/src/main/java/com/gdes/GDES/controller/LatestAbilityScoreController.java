@@ -1,7 +1,9 @@
 package com.gdes.GDES.controller;
 
-import com.gdes.GDES.model.LatestAbilityScore;
-import com.gdes.GDES.service.LatestAbilityScoreService;
+import com.gdes.GDES.model.Latestabilityscore;
+import com.gdes.GDES.model.Scoredetail;
+import com.gdes.GDES.service.LatestabilityscoreService;
+import com.gdes.GDES.service.ScoredetailService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,19 +11,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.annotation.Resource;
 import java.util.List;
 
-/**
- * 控制器
- */
 @Controller
-@RequestMapping("/latestabilityscore/")
-public class LatestAbilityScoreController {
+@RequestMapping("/las/")
+public class LatestabilityscoreController {
     @Resource
-    private LatestAbilityScoreService latestAbilityScoreService;
+    private LatestabilityscoreService latestabilityscoreService;
 
+    @Resource
+    private ScoredetailService scoredetailService;
+
+    /**
+     * 按学生id查询能力得分
+     * @param id_s
+     * @param model
+     * @return
+     * @throws Exception
+     */
     @RequestMapping("listbystudentid")
-    public String listByStudentId(String id_s, Model model) {
-        List<LatestAbilityScore> latestAbilityScores = latestAbilityScoreService.getAbilityScoreListById(id_s);
-        //向model中保存数据
+    public String listByStudentId(String id_s, Model model) throws Exception {
+        List<Latestabilityscore> latestAbilityScores = latestabilityscoreService.queryByStudentId(id_s);
         model.addAttribute("scorebystudentid", latestAbilityScores);
         return "student/ability_score";
     }
@@ -33,10 +41,13 @@ public class LatestAbilityScoreController {
      * @return
      */
     @RequestMapping("scoreproportion")
-    public String scoreProportion(String id_s, Model model) {
-        List<LatestAbilityScore> latestAbilityScores = latestAbilityScoreService.getAbilityScoreListById(id_s);
-        //向model中保存数据
+    public String scoreProportion(String id_s, Model model) throws Exception {
+        //饼图
+        List<Latestabilityscore> latestAbilityScores = latestabilityscoreService.queryByStudentId(id_s);
         model.addAttribute("scorebystudentid", latestAbilityScores);
+        //折线图
+        List<Scoredetail> scoreDetailList = scoredetailService.queryByStudentId(id_s);
+        model.addAttribute("detailline", scoreDetailList);
         return "student/charts";
     }
 }
