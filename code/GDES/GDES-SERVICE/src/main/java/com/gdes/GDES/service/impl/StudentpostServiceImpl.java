@@ -36,4 +36,11 @@ public class StudentpostServiceImpl implements StudentpostService {
         }
         return studentpostList;
     }
+
+    public long getCountByStudentId(String sid) throws Exception {
+        StudentpostExample example = new StudentpostExample();
+        StudentpostExample.Criteria criteria = example.createCriteria();
+        criteria.andIdSEqualTo(sid);
+        return studentpostMapper.countByExample(example);
+    }
 }

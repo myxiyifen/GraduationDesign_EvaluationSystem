@@ -27,7 +27,7 @@
                     首页
                     <small>
                         <i class="icon-double-angle-right"></i>
-                        能力得分
+                        得分表
                     </small>
                     <a type="button" class="btn btn-info" style="float: right" href="${basePath}excle/sdown.do?id_s=631406010102">下载分析报表</a>
                 </h1>

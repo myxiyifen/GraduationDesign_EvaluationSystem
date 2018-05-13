@@ -141,19 +141,55 @@ public class EvaluationController {
         /**
          * 插入最新能力得分
          */
+        //得分详情里面的该学生的能力点
         List<Integer> apidList = scoredetailService.getApIdNotRepeat(studentid);
-        for(int i=0;i<apidList.size();i++) {
-            Scoredetail scoredetail = new Scoredetail();
-            scoredetail.setIdS(studentid);
-            scoredetail.setIdAp(apidList.get(i));
-            String score = scoredetailService.getAvgByStuentIdAndApId(scoredetail);
-            System.out.println(score);
-            Latestabilityscore la = new Latestabilityscore();
-            la.setIdS(studentid);
-            la.setIdAp(apidList.get(i));
-            la.setScoreLas(score);
-            la.setTimeLas(nowTime());
-            latestabilityscoreService.addLatestabilityscore(la);
+        //若不存在该学生的能力点得分
+        long isexist = latestabilityscoreService.queryStudentByStudentId(studentid);
+        if(isexist==0) {
+            for (int i = 0; i < apidList.size(); i++) {
+                Scoredetail scoredetail = new Scoredetail();
+                scoredetail.setIdS(studentid);
+                scoredetail.setIdAp(apidList.get(i));
+                String score = scoredetailService.getAvgByStuentIdAndApId(scoredetail);
+                Latestabilityscore la = new Latestabilityscore();
+                la.setIdS(studentid);
+                la.setIdAp(apidList.get(i));
+                la.setScoreLas(score);
+                la.setTimeLas(nowTime());
+                latestabilityscoreService.addLatestabilityscore(la);
+            }
+        } else { //存在某些能力得分
+            List<Integer> existap = latestabilityscoreService.getAbilityPointIdList(studentid);
+            //插入有新的能力点
+            for(int i=existap.size(); i<apidList.size(); i++) {
+                Scoredetail scoredetail = new Scoredetail();
+                scoredetail.setIdS(studentid);
+                scoredetail.setIdAp(apidList.get(i));
+                String score = scoredetailService.getAvgByStuentIdAndApId(scoredetail);
+                Latestabilityscore la = new Latestabilityscore();
+                la.setIdS(studentid);
+                la.setIdAp(apidList.get(i));
+                la.setScoreLas(score);
+                la.setTimeLas(nowTime());
+                latestabilityscoreService.addLatestabilityscore(la);
+            }
+            //更新操作
+            for(int i=0;i<apidList.size();i++) {
+                for(int j=0;j<existap.size();j++) {
+                    if(existap.get(j)==apidList.get(i)) {
+                        Scoredetail scoredetail = new Scoredetail();
+                        scoredetail.setIdS(studentid);
+                        scoredetail.setIdAp(apidList.get(i));
+                        String score = scoredetailService.getAvgByStuentIdAndApId(scoredetail);
+                        Latestabilityscore la = new Latestabilityscore();
+                        la.setIdS(studentid);
+                        la.setIdAp(apidList.get(i));
+                        la.setScoreLas(score);
+                        la.setTimeLas(nowTime());
+                        latestabilityscoreService.updateAbilityScoreByStudentId(la);
+                    }
+                }
+            }
         }
 
         /**
@@ -185,6 +221,7 @@ public class EvaluationController {
         /**
          * 插入学生岗位
          */
+        long isexiststudent = studentpostService.getCountByStudentId(studentid);
         for(int i=1;i<score_post[0].length;i++) {
             Studentpost sp = new Studentpost();
             sp.setIdS(studentid);

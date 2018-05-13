@@ -2,7 +2,6 @@
   <library name="Maven: com.alibaba:druid:1.0.5">
     <CLASSES>
       <root url="jar://$MAVEN_REPOSITORY$/com/alibaba/druid/1.0.5/druid-1.0.5.jar!/" />
-      <root url="jar://F:/Jar/Evaluation.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$MAVEN_REPOSITORY$/com/alibaba/druid/1.0.5/druid-1.0.5-javadoc.jar!/" />

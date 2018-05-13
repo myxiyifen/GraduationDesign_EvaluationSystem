@@ -23,10 +23,14 @@
         <div class="page-content">
             <div class="page-header">
                 <h1>
-                    Tables
+                    <a href="">首页</a>
                     <small>
                         <i class="icon-double-angle-right"></i>
-                        Static &amp; Dynamic Tables
+                        <a href="javascript:history.back(-1)">得分表</a>
+                        <small>
+                            <i class="icon-double-angle-right"></i>
+                            得分详情
+                        </small>
                     </small>
                 </h1>
             </div><!-- /.page-header -->
@@ -41,7 +45,7 @@
                                     <tr>
                                         <th>能力点编号</th>
                                         <th>能力点名称</th>
-                                        <th>试题编号</th>
+                                        <th>试题来源</th>
                                         <th>能力点得分</th>
                                         <th>阅卷教师</th>
                                         <th>得分时间</th>
@@ -53,7 +57,7 @@
                                          <td class="center">${d.idAp}</td>
                                         <td class="center">${d.abilitypoint.nameAp}</td>
                                         <td class="center">
-                                            <a href="#">${d.idQ}</a>
+                                            <a href="#">查看试题</a>
                                         </td>
                                         <td class="center">${d.scoreSd}</td>
                                         <td class="center">${d.teacher.nameT}</td>

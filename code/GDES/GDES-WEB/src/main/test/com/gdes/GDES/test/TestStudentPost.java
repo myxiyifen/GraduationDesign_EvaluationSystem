@@ -32,4 +32,8 @@ public class TestStudentPost {
             System.out.println(sp.getScoreSp());
         }
     }
+
+    /*public void testGetCountByStudentId() throws Exception {
+
+    }*/
 }

@@ -39,4 +39,19 @@ public class LatestabilityscoreServiceImpl implements LatestabilityscoreService{
 
         return latestabilityscores;
     }
+
+    public long queryStudentByStudentId(String sid) throws Exception {
+        LatestabilityscoreExample example = new LatestabilityscoreExample();
+        LatestabilityscoreExample.Criteria criteria = example.createCriteria();
+        criteria.andIdSEqualTo(sid);
+        return latestabilityscoreMapper.countByExample(example);
+    }
+
+    public List<Integer> getAbilityPointIdList(String sid) throws Exception {
+        return latestabilityscoreMapper.getAbilityPointId(sid);
+    }
+
+    public int updateAbilityScoreByStudentId(Latestabilityscore las) throws Exception {
+        return latestabilityscoreMapper.updateByPrimaryKey(las);
+    }
 }

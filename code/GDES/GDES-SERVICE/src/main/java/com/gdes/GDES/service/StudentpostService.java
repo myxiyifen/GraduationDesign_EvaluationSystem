@@ -18,4 +18,12 @@ public interface StudentpostService {
      * @throws Exception
      */
     public List<Studentpost> getListByStudentId(String sid) throws Exception;
+
+    /**
+     * 查询是否有该学生
+     * @param sid
+     * @return
+     * @throws Exception
+     */
+    public long getCountByStudentId(String sid) throws Exception;
 }
