@@ -43,4 +43,8 @@ public class StudentpostServiceImpl implements StudentpostService {
         criteria.andIdSEqualTo(sid);
         return studentpostMapper.countByExample(example);
     }
+
+    public int updateStudentPost(Studentpost studentpost) throws Exception {
+        return studentpostMapper.updateByPrimaryKey(studentpost);
+    }
 }

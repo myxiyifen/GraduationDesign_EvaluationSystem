@@ -24,7 +24,7 @@ public class TestLatestabilityscore {
 
     @Test
     public void testGetAbilityPointIdList() throws Exception {
-        List<Integer> list = latestabilityscoreService.getAbilityPointIdList("631406010212");
+        List<Integer> list = latestabilityscoreService.getAbilityPointIdList("631406010217");
         for(int i=0;i<list.size();i++) {
             System.out.println(list.get(i));
         }

@@ -60,11 +60,11 @@ public class TestQuestions {
         Questions question=new Questions();
         question.setIdQ(UUid.getUUID());
         question.setIdC("2");
-        question.setContextQ("数组的长度是多少");
-        question.setScoreQ("5");
+        question.setContextQ("这是一道主观题");
+        question.setScoreQ("10");
         question.setAnswerQ("12");
         question.setIdT("1");
-        question.setStyleQ("2");
+        question.setStyleQ("4");
 
         qm.insertSelective(question);
     }

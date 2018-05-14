@@ -26,4 +26,12 @@ public interface StudentpostService {
      * @throws Exception
      */
     public long getCountByStudentId(String sid) throws Exception;
+
+    /**
+     * 更新
+     * @param studentpost
+     * @return
+     * @throws Exception
+     */
+    public int updateStudentPost(Studentpost studentpost) throws Exception;
 }

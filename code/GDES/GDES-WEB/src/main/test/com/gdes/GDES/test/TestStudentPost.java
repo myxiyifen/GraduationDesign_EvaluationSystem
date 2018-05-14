@@ -33,7 +33,8 @@ public class TestStudentPost {
         }
     }
 
-    /*public void testGetCountByStudentId() throws Exception {
-
-    }*/
+    @Test
+    public void testGetCountByStudentId() throws Exception {
+        System.out.println(studentpostService.getCountByStudentId("631406010217"));
+    }
 }

@@ -27,7 +27,6 @@ public class KnowledgepointServiceImpl implements KnowledgepointService {
         KnowledgepointExample kpe=new KnowledgepointExample();
         KnowledgepointExample.Criteria criteria=kpe.createCriteria();
         criteria.andIdKpIsNotNull();
-
         List<Knowledgepoint> list=kpm.selectByExample(kpe);
         return list;
     }
