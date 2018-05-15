@@ -41,9 +41,7 @@
                                 <table id="sample-table-2" class="table table-striped table-bordered table-hover">
                                     <thead>
                                     <tr>
-                                        <th class="center">
-
-                                        </th>
+                                        <th class="center">学号</th>
                                         <th class="hidden-480">能力点编号</th>
                                         <th class="hidden-480">能力点名称</th>
                                         <th class="hidden-480">得分</th>
@@ -61,7 +59,6 @@
                                     <c:forEach items="${scorebystudentid}" var="a">
                                         <tr>
                                             <td class="center">
-
                                             </td>
 
                                             <td class="hidden-480">${a.idAp}</td>
