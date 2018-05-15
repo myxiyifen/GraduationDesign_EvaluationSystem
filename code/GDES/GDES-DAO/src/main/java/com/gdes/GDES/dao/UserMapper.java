@@ -3,6 +3,8 @@ package com.gdes.GDES.dao;
 import com.gdes.GDES.model.User;
 import com.gdes.GDES.model.UserExample;
 import java.util.List;
+import java.util.Set;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface UserMapper {
@@ -27,4 +29,32 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+
+
+
+    /**
+     * 根据用户名查询用户
+     * @param idU
+     * @return
+     */
+//    User selectUserByUserName(String userName);
+    User selectUserByUserName(String idU);
+
+    /**
+     * 根据用户名查询角色信息
+     * @param idU
+     * @return
+     */
+    Set<String> selectRolesByUserName(String idU);
+
+    /**
+     * 根据用户名查询权限信息
+     * @param idU
+     * @return
+     */
+    //todo
+    Set<String> selectPermissionByUserName(String idU);
+
+
+
 }

@@ -3,342 +3,170 @@
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
             + path + "/";
-    session.setAttribute("basePath",basePath);
+    session.setAttribute("basePath", basePath);
 %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
-
 <head>
     <base href="<%=basePath%>">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Amaze UI Admin index Examples</title>
-    <meta name="description" content="这是一个 index 页面">
-    <meta name="keywords" content="index">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="renderer" content="webkit">
-    <meta http-equiv="Cache-Control" content="no-siteapp" />
-    <link rel="icon" type="image/png" href="assets/i/favicon.png">
-    <link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
-    <meta name="apple-mobile-web-app-title" content="Amaze UI" />
-    <script src="assets/js/echarts.min.js"></script>
-    <link rel="stylesheet" href="assets/css/amazeui.min.css" />
-    <link rel="stylesheet" href="assets/css/amazeui.datatables.min.css" />
-    <link rel="stylesheet" href="assets/css/app.css">
-    <script src="assets/js/jquery.min.js"></script>
-    
-    <!-- 出题 -->
-	<script type="text/javascript" src="resources/script/configBase.js"></script>
-	<script type="text/javascript" src="resources/script/exam/exam.js"></script>
-
+    <meta charset="utf-8"/>
+    <title>问题列表</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../assets/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="../assets/css/ace.min.css"/>
 </head>
 
-<body data-type="index">
-    <script src="assets/js/theme.js"></script>
-    <div class="am-g tpl-g">
-        <!-- 头部 -->
-        <header>
-            <!-- logo -->
-            <div class="am-fl tpl-header-logo">
-                <a href="javascript:;"><img src="assets/img/logo.png" alt=""></a>
-            </div>
-            <!-- 右侧内容 -->
-            <div class="tpl-header-fluid">
-                <!-- 侧边切换 -->
-                <div class="am-fl tpl-header-switch-button am-icon-list">
-                    <span>
+<body>
 
-                </span>
-                </div>
-                <!-- 搜索 -->
-                <div class="am-fl tpl-header-search">
-                    <form class="tpl-header-search-form" action="javascript:;">
-                        <button class="tpl-header-search-btn am-icon-search"></button>
-                        <input class="tpl-header-search-box" type="text" placeholder="搜索内容...">
-                    </form>
-                </div>
-                <!-- 其它功能-->
-                <div class="am-fr tpl-header-navbar">
-                    <ul>
-                        <!-- 欢迎语 -->
-                        <li class="am-text-sm tpl-header-navbar-welcome">
-                            <a href="javascript:;">欢迎你, <span>Amaze UI</span> </a>
-                        </li>
+<div class="main-container" id="main-container">
+    <div class="main-container-inner">
+        <div class="page-content">
+            <div class="page-header">
+                <h1>
+                    首页
+                    <small>
+                        <i class="icon-double-angle-right"></i>
+                        试题列表
+                    </small>
+                    <a type="button" class="btn btn-info" style="float: right"
+                       href="${basePath}excle/sdown.do?id_s=631406010102">查 看</a>
+                </h1>
+            </div><!-- /.page-header -->
+            <div class="row">
+                <div class="col-xs-12">
+                    <!-- PAGE CONTENT BEGINS -->
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="table-responsive">
+                                <table id="sample-table-2" class="table table-striped table-bordered table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th class="center">
 
-                        <!-- 新邮件 -->
-                        <li class="am-dropdown tpl-dropdown" data-am-dropdown>
-                            <a href="javascript:;" class="am-dropdown-toggle tpl-dropdown-toggle" data-am-dropdown-toggle>
-                                <i class="am-icon-envelope"></i>
-                                <span class="am-badge am-badge-success am-round item-feed-badge">4</span>
-                            </a>
-                            <!-- 弹出列表 -->
-                            <ul class="am-dropdown-content tpl-dropdown-content">
-                                <li class="tpl-dropdown-menu-messages">
-                                    <a href="javascript:;" class="tpl-dropdown-menu-messages-item am-cf">
-                                        <div class="menu-messages-ico">
-                                            <img src="assets/img/user00.png" alt="">
-                                        </div>
-                                        <div class="menu-messages-time">
-                                            3小时前
-                                        </div>
-                                        <div class="menu-messages-content">
-                                            <div class="menu-messages-content-title">
-                                                <i class="am-icon-circle-o am-text-success"></i>
-                                                <span>夕风色</span>
-                                            </div>
-                                            <div class="am-text-truncate"> Amaze UI 的诞生，依托于 GitHub 及其他技术社区上一些优秀的资源；Amaze UI 的成长，则离不开用户的支持。 </div>
-                                            <div class="menu-messages-content-time">2016-09-21 下午 16:40</div>
-                                        </div>
-                                    </a>
-                                </li>
+                                        </th>
+                                        <th class="hidden-480">试题内容</th>
+                                        <th class="hidden-480">试题答案</th>
+                                        <th class="hidden-480">试题分数</th>
+                                        <%--<th>
+                                            <i class="icon-time bigger-110 hidden-480"></i>
+                                            更新日期(最后日期)
+                                        </th>--%>
+                                        <th class="hidden-480">试题类型</th>
+                                        <th class="hidden-480">操作</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
 
-                                <li class="tpl-dropdown-menu-messages">
-                                    <a href="javascript:;" class="tpl-dropdown-menu-messages-item am-cf">
-                                        <div class="menu-messages-ico">
-                                            <img src="assets/img/user00.png" alt="">
-                                        </div>
-                                        <div class="menu-messages-time">
-                                            5天前
-                                        </div>
-                                        <div class="menu-messages-content">
-                                            <div class="menu-messages-content-title">
-                                                <i class="am-icon-circle-o am-text-warning"></i>
-                                                <span>禁言小张</span>
-                                            </div>
-                                            <div class="am-text-truncate"> 为了能最准确的传达所描述的问题， 建议你在反馈时附上演示，方便我们理解。 </div>
-                                            <div class="menu-messages-content-time">2016-09-16 上午 09:23</div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="tpl-dropdown-menu-messages">
-                                    <a href="javascript:;" class="tpl-dropdown-menu-messages-item am-cf">
-                                        <i class="am-icon-circle-o"></i> 进入列表…
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+                                    <tbody>
+                                    <c:forEach items="${qlist}" var="a">
+                                        <tr>
+                                            <td class="center">
 
-                        <!-- 新提示 -->
-                        <li class="am-dropdown" data-am-dropdown>
-                            <a href="javascript:;" class="am-dropdown-toggle" data-am-dropdown-toggle>
-                                <i class="am-icon-bell"></i>
-                                <span class="am-badge am-badge-warning am-round item-feed-badge">5</span>
-                            </a>
+                                            </td>
 
-                            <!-- 弹出列表 -->
-                            <ul class="am-dropdown-content tpl-dropdown-content">
-                                <li class="tpl-dropdown-menu-notifications">
-                                    <a href="javascript:;" class="tpl-dropdown-menu-notifications-item am-cf">
-                                        <div class="tpl-dropdown-menu-notifications-title">
-                                            <i class="am-icon-line-chart"></i>
-                                            <span> 有6笔新的销售订单</span>
-                                        </div>
-                                        <div class="tpl-dropdown-menu-notifications-time">
-                                            12分钟前
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="tpl-dropdown-menu-notifications">
-                                    <a href="javascript:;" class="tpl-dropdown-menu-notifications-item am-cf">
-                                        <div class="tpl-dropdown-menu-notifications-title">
-                                            <i class="am-icon-star"></i>
-                                            <span> 有3个来自人事部的消息</span>
-                                        </div>
-                                        <div class="tpl-dropdown-menu-notifications-time">
-                                            30分钟前
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="tpl-dropdown-menu-notifications">
-                                    <a href="javascript:;" class="tpl-dropdown-menu-notifications-item am-cf">
-                                        <div class="tpl-dropdown-menu-notifications-title">
-                                            <i class="am-icon-folder-o"></i>
-                                            <span> 上午开会记录存档</span>
-                                        </div>
-                                        <div class="tpl-dropdown-menu-notifications-time">
-                                            1天前
-                                        </div>
-                                    </a>
-                                </li>
+                                            <td class="hidden-480">
+                                                <a  data-toggle="modal" data-target="#myModal">
+                                                    <div style="width:400px;word-wrap:break-word;">
+                                                        ${a.contextQ}
+                                                    </div>
+                                                </a>
+                                            </td>
+                                            <td class="hidden-480">
+                                                <div style="width:100px;word-wrap:break-word;">
+                                                    ${a.answerQ}
+                                                </div>
+                                            </td>
+                                            <td class="hidden-480">${a.scoreQ}</td>
+                                                <%--<td>Feb 12</td>--%>
+                                            <td class="hidden-480">${a.styleQ=='2'?"填空题":"主观题"}</td>
 
+                                            <td>
+                                                <a class="btn btn-danger">删除</a>
+                                            </td>
 
-                                <li class="tpl-dropdown-menu-notifications">
-                                    <a href="javascript:;" class="tpl-dropdown-menu-notifications-item am-cf">
-                                        <i class="am-icon-bell"></i> 进入列表…
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <!-- 退出 -->
-                        <li class="am-text-sm">
-                            <a href="javascript:;">
-                                <span class="am-icon-sign-out"></span> 退出
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-        </header>
-        <!-- 风格切换 -->
-        <div class="tpl-skiner">
-            <div class="tpl-skiner-toggle am-icon-cog">
-            </div>
-            <div class="tpl-skiner-content">
-                <div class="tpl-skiner-content-title">
-                    选择主题
-                </div>
-                <div class="tpl-skiner-content-bar">
-                    <span class="skiner-color skiner-white" data-color="theme-white"></span>
-                    <span class="skiner-color skiner-black" data-color="theme-black"></span>
-                </div>
-            </div>
-        </div>
-        <!-- 侧边导航栏 -->
-        <div class="left-sidebar">
-            <!-- 用户信息 -->
-            <div class="tpl-sidebar-user-panel">
-                <div class="tpl-user-panel-slide-toggleable">
-                    <div class="tpl-user-panel-profile-picture">
-                        <img src="assets/img/user04.png" alt="">
+                                            <td>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
-                    <span class="user-panel-logged-in-text">
-              <i class="am-icon-circle-o am-text-success tpl-user-panel-status-icon"></i>
-              用户你好
-          </span>
-                    <a href="javascript:;" class="tpl-user-panel-action-link"> <span class="am-icon-pencil"></span> 账号设置</a>
-                </div>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.page-content -->
+    </div><!-- /.main-content -->
+</div><!-- /.main-container -->
+
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">编辑题目内容</h4>
             </div>
-
-            <!-- 菜单 -->
-            <ul class="sidebar-nav">
-                <li class="sidebar-nav-heading">Components <span class="sidebar-nav-heading-info"> 功能菜单</span></li>
-                <li class="sidebar-nav-link">
-                    <a href="index.html" class="active">
-                        <i class="am-icon-home sidebar-nav-link-logo"></i> 首页(教师个人信息)
-                    </a>
-                </li>
-                <li class="sidebar-nav-link">
-                    <a href="javascript:;" class="sidebar-nav-sub-title">
-                        <i class="am-icon-table sidebar-nav-link-logo"></i> 试题管理
-                        <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
-                    </a>
-                    <ul class="sidebar-nav sidebar-nav-sub">
-                        <li class="sidebar-nav-link">
-                            <a href="chuti.jsp">
-                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 出题
-                            </a>
-                        </li>
-                        <li class="sidebar-nav-link">
-                            <a href="javascript:;">
-                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 查看试题列表
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="sidebar-nav-link">
-                    <a href="javascript:;" class="sidebar-nav-sub-title">
-                        <i class="am-icon-table sidebar-nav-link-logo"></i> 学生成绩管理
-                        <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
-                    </a>
-                    <ul class="sidebar-nav sidebar-nav-sub">
-                        <li class="sidebar-nav-link">
-                            <a href="javascript:;">
-                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 排行榜
-                            </a>
-                        </li>
-                        <li class="sidebar-nav-link">
-                            <a href="javascript:;">
-                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 学生成绩查看
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
-                <!--<li class="sidebar-nav-link">-->
-                    <!--<a href="tables.html">-->
-                        <!--<i class="am-icon-table sidebar-nav-link-logo"></i> 表格-->
-                    <!--</a>-->
-                <!--</li>-->
-                <!--<li class="sidebar-nav-link">-->
-                    <!--<a href="calendar.html">-->
-                        <!--<i class="am-icon-calendar sidebar-nav-link-logo"></i> 日历-->
-                    <!--</a>-->
-                <!--</li>-->
-                <!--<li class="sidebar-nav-link">-->
-                    <!--<a href="form.html">-->
-                        <!--<i class="am-icon-wpforms sidebar-nav-link-logo"></i> 表单-->
-
-                    <!--</a>-->
-                <!--</li>-->
-                <!--<li class="sidebar-nav-link">-->
-                    <!--<a href="chart.html">-->
-                        <!--<i class="am-icon-bar-chart sidebar-nav-link-logo"></i> 图表-->
-
-                    <!--</a>-->
-                <!--</li>-->
-
-                <!--<li class="sidebar-nav-heading">Page<span class="sidebar-nav-heading-info"> 常用页面</span></li>-->
-                <!--<li class="sidebar-nav-link">-->
-                    <!--<a href="javascript:;" class="sidebar-nav-sub-title">-->
-                        <!--<i class="am-icon-table sidebar-nav-link-logo"></i> 数据列表-->
-                        <!--<span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>-->
-                    <!--</a>-->
-                    <!--<ul class="sidebar-nav sidebar-nav-sub">-->
-                        <!--<li class="sidebar-nav-link">-->
-                            <!--<a href="table-list.html">-->
-                                <!--<span class="am-icon-angle-right sidebar-nav-link-logo"></span> 文字列表-->
-                            <!--</a>-->
-                        <!--</li>-->
-
-                        <!--<li class="sidebar-nav-link">-->
-                            <!--<a href="table-list-img.html">-->
-                                <!--<span class="am-icon-angle-right sidebar-nav-link-logo"></span> 图文列表-->
-                            <!--</a>-->
-                        <!--</li>-->
-                    <!--</ul>-->
-                <!--</li>-->
-                <!--<li class="sidebar-nav-link">-->
-                    <!--<a href="sign-up.html">-->
-                        <!--<i class="am-icon-clone sidebar-nav-link-logo"></i> 注册-->
-                        <!--<span class="am-badge am-badge-secondary sidebar-nav-link-logo-ico am-round am-fr am-margin-right-sm">6</span>-->
-                    <!--</a>-->
-                <!--</li>-->
-                <!--<li class="sidebar-nav-link">-->
-                    <!--<a href="login.html">-->
-                        <!--<i class="am-icon-key sidebar-nav-link-logo"></i> 登录-->
-                    <!--</a>-->
-                <!--</li>-->
-                <!--<li class="sidebar-nav-link">-->
-                    <!--<a href="404.html">-->
-                        <!--<i class="am-icon-tv sidebar-nav-link-logo"></i> 404错误-->
-                    <!--</a>-->
-                <!--</li>-->
-
-            </ul>
-        </div>
-
-
-        <!-- 内容区域 -->
-        <!-- 出题界面 -->
-        
-        <div class="tpl-content-wrapper">
-        	<iframe src="/teacher/chutiindex.jsp" height="600px" width="100%"></iframe>
-        </div>
-
-    </div>
-    </div>
-    <script src="assets/js/amazeui.min.js"></script>
-    <script src="assets/js/amazeui.datatables.min.js"></script>
-    <script src="assets/js/dataTables.responsive.min.js"></script>
-    <script src="assets/js/app.js"></script>
-
-    <!-- 二次开发 -->
-    <!-- 出题 -->
+            <div class="modal-body">在这里添加一些文本</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary">提交更改</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+    <!-- basic scripts -->
     <script type="text/javascript">
-        
+        window.jQuery || document.write("<script src='../assets/js/jquery-2.0.3.min.js'>" + "<" + "/script>");
+    </script>
+    <script src="../assets/js/bootstrap.min.js"></script>
+    <script src="../assets/js/jquery.dataTables.min.js"></script>
+    <script src="../assets/js/jquery.dataTables.bootstrap.js"></script>
+    <script type="text/javascript">
+        jQuery(function ($) {
+            var oTable1 = $('#sample-table-2').dataTable({
+                "aoColumns": [
+                    {"bSortable": false},
+                    null, null, null, null, null,
+                    {"bSortable": false}
+                ]
+            });
+
+
+            $('table th input:checkbox').on('click', function () {
+                var that = this;
+                $(this).closest('table').find('tr > td:first-child input:checkbox')
+                    .each(function () {
+                        this.checked = that.checked;
+                        $(this).closest('tr').toggleClass('selected');
+                    });
+
+            });
+
+
+            $('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
+
+            function tooltip_placement(context, source) {
+                var $source = $(source);
+                var $parent = $source.closest('table')
+                var off1 = $parent.offset();
+                var w1 = $parent.width();
+
+                var off2 = $source.offset();
+                var w2 = $source.width();
+
+                if (parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2)) return 'right';
+                return 'left';
+            }
+        })
+        /*个人能力报表下载*/
+        function myDownload() {
+            var myurl = "${basePath}excle/sdown.do?id_s=631406010102";
+            window.option(myurl);
+        }
     </script>
 
 </body>
-
 </html>
